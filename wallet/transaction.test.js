@@ -11,6 +11,10 @@ describe('Transaction', () => {
     transaction = Transaction.newTransaction(wallet, recipient, amount);
   });
 
+  it('inputs the balance of the wallet', () => {
+    expect(transaction.input.amount).toEqual(wallet.balance);
+  });
+
   it('outputs the `amount` subtracted from the wallet balance', () => {
     expect(transaction.outputs.find(output => output.address === wallet.publicKey).amount).toEqual(wallet.balance - amount);
   });
